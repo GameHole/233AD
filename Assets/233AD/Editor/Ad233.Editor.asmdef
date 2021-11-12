@@ -1,0 +1,18 @@
+{
+    "name": "Ad233.Editor",
+    "references": [
+        "GUID:84ffd2ae0c425e941964896fa1a44407",
+        "GUID:3ac4777c5fa1ef34db1d1b1b18090161",
+        "GUID:5b36311bf6883e348939dcfe19fa5601"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

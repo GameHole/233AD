@@ -1,0 +1,10 @@
+{
+  "name": "com.advertising.ad233",
+  "displayName": "233 Advertising Sdk",
+  "description": "",
+  "version": "1.0.0",
+  "unity": "2018.3",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
