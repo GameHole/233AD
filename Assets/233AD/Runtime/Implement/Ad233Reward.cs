@@ -33,28 +33,37 @@ namespace Ad233
         public void Initialize()
         {
             videoAdCallback = new VideoAdCallback();
-            videoAdCallback.OnAdClose += () =>
-            {
-                __onclose?.Invoke(isReward);
-                onClose?.Invoke(isReward);
-                if (tcs != null)
-                {
-                    if (!tcs.Task.IsCompleted)
-                        tcs.SetResult(isReward);
-                }
-            };
+            videoAdCallback.OnAdClose += closeInternal;
             videoAdCallback.OnAdReward += () =>
             {
                 isReward = true;
             };
         }
+        void closeInternal()
+        {
+            __onclose?.Invoke(isReward);
+            onClose?.Invoke(isReward);
+            if (tcs != null)
+            {
+                if (!tcs.Task.IsCompleted)
+                    tcs.SetResult(isReward);
+            }
+        }
         void ShowInternal()
         {
-            isReward = false;
+            if (isNotUseAd)
+            {
+                isReward = true;
+                closeInternal();
+            }
+            else
+            {
+                isReward = false;
 #if UNITY_ANDROID
-            var set = AScriptableObject.Get<Ad233Setting>();
-            MetaAd.ShowVideoAd(set.rewardId, videoAdCallback);
+                var set = AScriptableObject.Get<Ad233Setting>();
+                MetaAd.ShowVideoAd(set.rewardId, videoAdCallback);
 #endif
+            }
         }
         public bool isReady()
         {
