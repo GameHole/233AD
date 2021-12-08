@@ -32,10 +32,14 @@ namespace Ad233
 #if UNITY_ANDROID
         public static AndroidJavaObject GetCurrentActivity()
         {
+#if UNITY_EDITOR
+            return null;
+#else
             using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
             {
                 return unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             }
+#endif
         }
 
         public static AndroidJavaObject GetApplicationContext()

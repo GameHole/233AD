@@ -18,12 +18,13 @@ public class Test : MonoBehaviour
     public Button ana1;
     void Start()
     {
-        rwd.onClick.AddListener(() =>
+        rwd.onClick.AddListener(async() =>
         {
-            rewardAd.AutoShow((v) =>
-            {
-                Debug.Log(v);
-            });
+            //rewardAd.AutoShow((v) =>
+            //{
+            //    Debug.Log(v);
+            //});
+            Debug.Log(await rewardAd.AutoShowAsync());
         });
         inter.onClick.AddListener(() =>
         {

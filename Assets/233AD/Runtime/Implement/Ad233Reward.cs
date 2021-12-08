@@ -25,8 +25,11 @@ namespace Ad233
 
         public Task<bool> AutoShowAsync()
         {
-            tcs = new TaskCompletionSource<bool>();
-            ShowInternal();
+            if (tcs == null || tcs.Task.IsCompleted)
+            {
+                tcs = new TaskCompletionSource<bool>();
+                ShowInternal();
+            }
             return tcs.Task;
         }
 
